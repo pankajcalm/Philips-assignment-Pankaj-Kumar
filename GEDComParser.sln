@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.2092
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "GEDComParser\Parser.csproj", "{4E7B7E30-679B-4381-93E0-B140C168C32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserTests", "ParserTests\ParserTests.csproj", "{0B724C25-9CCE-4821-8D17-4E41280E25AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E7B7E30-679B-4381-93E0-B140C168C32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E7B7E30-679B-4381-93E0-B140C168C32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E7B7E30-679B-4381-93E0-B140C168C32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E7B7E30-679B-4381-93E0-B140C168C32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B724C25-9CCE-4821-8D17-4E41280E25AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B724C25-9CCE-4821-8D17-4E41280E25AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B724C25-9CCE-4821-8D17-4E41280E25AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B724C25-9CCE-4821-8D17-4E41280E25AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA51D05D-99AA-4684-8169-87ADDB2318BC}
+	EndGlobalSection
+EndGlobal
