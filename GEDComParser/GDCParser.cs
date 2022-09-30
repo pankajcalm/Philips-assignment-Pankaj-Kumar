@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -53,6 +53,7 @@ namespace GEDComParser
 
                     XmlElement subtree = null;
                     XmlElement nameSubtree = null;
+                    XmlElement famSubtree = null;
                     XmlElement childNameSubtree = null;
 
                     // This starts a new subtree of type
@@ -68,11 +69,24 @@ namespace GEDComParser
 
                         if (currentLvl == 1)
                         {
+                            string famName = string.Empty;
+                            int startIndex = data.IndexOf('/');
+                            int lastIndex = data.LastIndexOf('/');
+
+                            if (startIndex > -1)
+                                famName = data.Substring(startIndex, lastIndex - startIndex + 1);
+
+                            if (!string.IsNullOrEmpty(famName))
+                                data = data.Replace(famName, "");
+
                             // This starts a NAME subtree with a value
                             if (nameSubtree != null)
                                 subtree.AppendChild(nameSubtree);
-                            nameSubtree = GetFirstXmlNode(tagOrId, data, xmlDocument);
+                            nameSubtree = GetFirstXmlNode(tagOrId, data.TrimEnd(' '), xmlDocument);
 
+                            famSubtree = GetFamilyXmlNode(tagOrId, famName.Trim('/'), xmlDocument);
+                            if (nameSubtree != null && famSubtree != null)
+                                subtree.AppendChild(famSubtree);
                         }
                         else
                         {
@@ -83,8 +97,13 @@ namespace GEDComParser
                             }
                         }
                     }
+
                     if (nameSubtree != null)
+                    {
                         subtree.AppendChild(nameSubtree);
+                        if (famSubtree != null)
+                            subtree.AppendChild(famSubtree);
+                    }
                     root.AppendChild(subtree);
                 }
 
@@ -149,6 +168,19 @@ namespace GEDComParser
 
             return result;
         }
+
+        private XmlElement GetFamilyXmlNode(string name, string value, XmlDocument doc)
+        {
+            XmlElement result = null;
+            if (name.Equals("name", StringComparison.InvariantCultureIgnoreCase))
+            {
+                result = doc.CreateElement("FAMNAME");
+                result.InnerText = value;
+            }
+
+            return result;
+        }
+
 
         private XmlElement GetChildXmlNode(string name, string data, XmlDocument doc)
         {
